@@ -50,8 +50,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     	
     	auth.parentAuthenticationManager(authenticationManager)
     	.ldapAuthentication()
-    	.userSearchFilter("(&(sAMAccountName={0})(objectclass=user))")
-        .userSearchBase("dc=<company>,dc=local")
+    	.userSearchFilter("YOUR_SEARCH_FILER")
+        .userSearchBase("YOUR_SEARCH_BASE")
         .contextSource(contextSource())
         .ldapAuthoritiesPopulator(ldapAuthoritiesPopulator());
 
@@ -59,7 +59,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     
     @Bean
     public static LdapAuthoritiesPopulator ldapAuthoritiesPopulator() throws Exception {
-        DefaultLdapAuthoritiesPopulator populator = new DefaultLdapAuthoritiesPopulator(contextSource(), "dc=<company>,dc=local");
+        DefaultLdapAuthoritiesPopulator populator = new DefaultLdapAuthoritiesPopulator(contextSource(), "YOUR_SEARCH_BASE");
         populator.setIgnorePartialResultException(true);
         return populator;
     }
